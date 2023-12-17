@@ -24,5 +24,13 @@ void gpio_init(GPIO_TypeDef *GPIOx, GPIO_Config_Typedef config)
 ```c
 void gpio_write_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint8_t state)
 ```
+### [`gpio_read_pin`](#gpio_read_pin)
+```c
+void gpio_read_pin(GPIO_TypeDef *GPIOx, uint8_t pin)
+```
+### [`gpio_toggle_pin`](#gpio_toggle_pin)
+```c
+void gpio_toggle_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint32_t delay)
+```
 
 

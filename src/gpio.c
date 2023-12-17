@@ -1,5 +1,5 @@
 #include "gpio.h"
-
+#include "util.h"
 void gpio_clock_init(GPIO_TypeDef *GPIOx, uint8_t state)
 {
     if (state == ENABLE)
@@ -81,4 +81,17 @@ void gpio_write_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint8_t state)
     {
         GPIOx->BSRR |= (1 << (16 + pin));
     }
+}
+
+uint8_t gpio_read_pin(GPIO_TypeDef *GPIOx, uint8_t pin)
+{
+    return ((GPIOx->IDR >> pin) & 0x1U);
+}
+
+void gpio_toggle_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint32_t delay)
+{
+    GPIOx->BSRR |= (1 << pin);
+    delay_ms(delay);
+    GPIOx->BSRR |= (1 << (16 + pin));
+    delay_ms(delay);
 }

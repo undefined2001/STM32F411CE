@@ -62,5 +62,7 @@ typedef struct
 void gpio_clock_init(GPIO_TypeDef *GPIOx, uint8_t state);
 void gpio_init(GPIO_TypeDef *GPIOx, GPIO_Config_Typedef config);
 void gpio_write_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint8_t state);
+uint8_t gpio_read_pin(GPIO_TypeDef *GPIOx, uint8_t pin);
+void gpio_toggle_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint32_t delay);
 
 #endif

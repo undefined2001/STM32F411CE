@@ -12,7 +12,7 @@ int main()
     3. spped is fast
     4. gpio output is push/pull mode
     */
-    GPIO_Config_Typedef led_config;
+    GPIO_Config_TypeDef led_config;
     led_config.pin = led_pin;
     led_config.mode = GPIO_OUTPUT;
     led_config.speed = GPIO_OUT_FAST_SPEED;

@@ -8,6 +8,4 @@ void delay_ms(uint32_t delay) {
     for (uint32_t i = 0; i < delay; ++i) {
         while (!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)) {}  // Wait until the COUNTFLAG is set
     }
-
-    SysTick->CTRL = 0;  // Disable SysTick
 }

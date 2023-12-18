@@ -1,5 +1,5 @@
 ![Static Badge](https://img.shields.io/badge/Version-0.0.1-blue)
-![Static Badge](https://img.shields.io/badge/Language-white?logo=c%2B%2B&logoColor=%2300549D&labelColor=white&color=%2300549D)
+![Static Badge](https://img.shields.io/badge/Language-white?logo=c&logoColor=%2300549D&labelColor=white&color=%2300549D)
 
 
 # Baremetal Drivers

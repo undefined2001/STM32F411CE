@@ -18,7 +18,7 @@ void gpio_clock_init(GPIO_TypeDef *GPIOx, uint8_t state)
 ```
 ### [`gpio_init`](#gpio_init)
 ```c
-void gpio_init(GPIO_TypeDef *GPIOx, GPIO_Config_Typedef config)
+void gpio_init(GPIO_TypeDef *GPIOx, GPIO_Config_TypeDef config)
 ```
 ### [`gpio_write_pin`](#gpio_write_pin)
 ```c
@@ -32,5 +32,8 @@ uint8_t gpio_read_pin(GPIO_TypeDef *GPIOx, uint8_t pin)
 ```c
 void gpio_toggle_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint32_t delay)
 ```
-
+### [`gpio_irq_handler`](#gpio_irq_handler)
+```c
+void gpio_irq_handler(uint8_t pin)
+```
 

@@ -25,10 +25,7 @@ int main()
 
     while (1)
     {
-        gpio_write_pin(GPIOC, led_pin, LOW);
-        delay_ms(100);
-        gpio_write_pin(GPIOC, led_pin, HIGH);
-        delay_ms(100);
+        gpio_toggle_pin(GPIOC, led_pin, 500);
     }
 }
 
@@ -37,6 +34,6 @@ void EXTI0_IRQHandler()
     gpio_irq_handler(button_pin);
     for (int i = 0; i < 5; i++)
     {
-        gpio_toggle_pin(GPIOC, led_pin, 1000);
+        gpio_toggle_pin(GPIOC, led_pin, 2000);
     }
 }

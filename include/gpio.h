@@ -1,8 +1,8 @@
-#include "stm32f411xe.h"
-#include "util.h"
-
 #ifndef GPIO_H
 #define GPIO_H
+
+#include "stm32f411xe.h"
+#include "util.h"
 
 #define __STATTIC_VOID static void
 
@@ -60,10 +60,7 @@ typedef struct
     uint8_t speed; // GPIO pin speed
 } GPIO_Config_TypeDef;
 
-/*These Are the utility Function*/
-__STATIC_INLINE uint8_t __get_port_code(GPIO_TypeDef *GPIOx);
-__STATTIC_VOID __syscfgr_init(GPIO_TypeDef *GPIOx, uint8_t pin);
-__STATTIC_VOID __exti_init(uint8_t mode, uint8_t pin);
+
 
 /*These function is used to manipulate the gpio pins*/
 void gpio_clock_init(GPIO_TypeDef *GPIOx, uint8_t state);

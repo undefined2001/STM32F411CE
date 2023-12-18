@@ -1,6 +1,9 @@
 #include "gpio.h"
 #include "util.h"
 
+/**
+@blockutility: These are the utility function used in this particular source file
+*/
 
 /************
 @function: __get_port_code
@@ -83,6 +86,10 @@ __STATTIC_VOID __exti_init(uint8_t mode, uint8_t pin)
     /*Unmasking the Interrupt Mask Register*/
     EXTI->IMR |= (1 << pin);
 }
+
+/**
+@endblockutility: Here the block of the utility function ends
+*/
 
 
 /************

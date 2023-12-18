@@ -14,20 +14,19 @@
 __STATIC_INLINE uint8_t __get_port_code(GPIO_TypeDef *GPIOx)
 {
     /*Using Ternary to make the code size small*/
-    return (GPIOx == GPIOA)? 0x0U:\
-           (GPIOx == GPIOB)? 0x1U:\
-           (GPIOx == GPIOC)? 0x2U:\
-           (GPIOx == GPIOD)? 0x3U:\
-           (GPIOx == GPIOE)? 0x4U:\
-           (GPIOx == GPIOH)? 0x7U: 0x0U;
+    return (GPIOx == GPIOA) ? 0x0U : (GPIOx == GPIOB) ? 0x1U
+                                 : (GPIOx == GPIOC)   ? 0x2U
+                                 : (GPIOx == GPIOD)   ? 0x3U
+                                 : (GPIOx == GPIOE)   ? 0x4U
+                                 : (GPIOx == GPIOH)   ? 0x7U
+                                                      : 0x0U;
 }
-
 
 /**************
 @function: __syscfg_init
 @params:
   - GPIO_Typedef
-  - uint8_t 
+  - uint8_t
 @result: turn on the clock for the syscfgr and set the exticr for the corresponding exit(external interrupt)
 ***************/
 __STATTIC_VOID __syscfgr_init(GPIO_TypeDef *GPIOx, uint8_t pin)
@@ -47,7 +46,6 @@ __STATTIC_VOID __syscfgr_init(GPIO_TypeDef *GPIOx, uint8_t pin)
     /*Configuring the exticr*/
     SYSCFG->EXTICR[exti_index] |= (port_code << register_pos);
 }
-
 
 /************
 @function: __exti_init
@@ -91,7 +89,6 @@ __STATTIC_VOID __exti_init(uint8_t mode, uint8_t pin)
 @endblockutility: Here the block of the utility function ends
 */
 
-
 /************
 @function: gpio_clcok_init
 @params:
@@ -119,6 +116,14 @@ void gpio_clock_init(GPIO_TypeDef *GPIOx, uint8_t state)
         {
             RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
         }
+        else if (GPIOx == GPIOE)
+        {
+            RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
+        }
+        else if (GPIOx == GPIOH)
+        {
+            RCC->AHB1ENR |= RCC_AHB1ENR_GPIOHEN;
+        }
     }
     else if (state == DISABLE)
     {
@@ -138,9 +143,16 @@ void gpio_clock_init(GPIO_TypeDef *GPIOx, uint8_t state)
         {
             RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIODEN;
         }
+        else if (GPIOx == GPIOE)
+        {
+            RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOEEN;
+        }
+        else if (GPIOx == GPIOH)
+        {
+            RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOHEN;
+        }
     }
 }
-
 
 /************
 @function: gpio_init
@@ -195,12 +207,11 @@ void gpio_init(GPIO_TypeDef *GPIOx, GPIO_Config_TypeDef config)
     }
 }
 
-
 /************
 @function: gpio_write_pin
 @params:
   - GPIO_TypeDef *GPIOx (a pointer of GPIO_TypeDef)
-  - uint8_t pin 
+  - uint8_t pin
   - uint8_t state
 @result: making the gpio state high or low
 ************/
@@ -216,8 +227,6 @@ void gpio_write_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint8_t state)
     }
 }
 
-
-
 /************
 @function: gpio_read_pin
 @params:
@@ -229,7 +238,6 @@ uint8_t gpio_read_pin(GPIO_TypeDef *GPIOx, uint8_t pin)
 {
     return ((GPIOx->IDR >> pin) & 0x1U);
 }
-
 
 /************
 @function: gpio_toggle_pin
@@ -246,7 +254,6 @@ void gpio_toggle_pin(GPIO_TypeDef *GPIOx, uint8_t pin, uint32_t delay)
     GPIOx->BSRR |= (1 << pin);
     delay_ms(delay);
 }
-
 
 /************
 @function: gpio_irq_handler
